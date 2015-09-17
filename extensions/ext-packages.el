@@ -20,7 +20,7 @@
   "A list of packages to ensure are installed at launch.")
 
 ;; Check for any packages that are not installed, and auto install.
-(let ((uninstalled-packages (remove-if 'package-installed-p required-packages)))
+(let ((uninstalled-packages (cl-remove-if 'package-installed-p required-packages)))
   ;; refresh the package cache if we're going to install.
   (when uninstalled-packages
     (package-refresh-contents))
@@ -35,7 +35,7 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; enable paredit by default for the various lisp modes
-(loop for hook in '(emacs-lisp-mode-hook
+(cl-loop for hook in '(emacs-lisp-mode-hook
 		    lisp-mode-hook
 		    inferior-lisp-mode-hook
 		    scheme-mode-hook)
