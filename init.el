@@ -9,7 +9,7 @@
             (load (concat user-emacs-directory "base-custom.el"))))
 
 ;; Personal script path
-(add-to-list 'load-path (concat user-emacs-directory "extension"))
+(add-to-list 'load-path (concat user-emacs-directory "extensions"))
 
 ;; Install/load required packages.
 (require 'ext-packages)
