@@ -29,7 +29,7 @@
 (setq message-log-max 5000)
 
 ;; display
-(setq custom-enabled-themes (quote (misterioso)))
+(load-theme 'misterioso)
 
 ;; editing adjustments
 (setq-default indent-tabs-mode nil)
