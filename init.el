@@ -13,3 +13,4 @@
 ;; Install/load required packages.
 (require 'ext-packages)
 (require 'ext-go)
+(require 'ext-json)
