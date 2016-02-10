@@ -1,0 +1,5 @@
+# ignore downloaded files
+elpa/
+
+# ignore ido mode artifacts
+ido.last
