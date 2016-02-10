@@ -44,4 +44,18 @@
   :diminish
   (smartparens-mode . " ⓟ"))
 
+;; Fixup OSX path
+(use-package exec-path-from-shell
+  :ensure t
+  :if (eq system-type 'darwin)
+  :config
+  (add-to-list 'exec-path-from-shell-variables "GOPATH")
+  (exec-path-from-shell-initialize))
+
+;; golang can be usefull sometimes.
+(use-package go-mode
+  :mode "\\.go\\'"
+  :init
+  (add-hook 'before-save-hook 'gofmt-before-save))
+
 ;;; init.el ends here
