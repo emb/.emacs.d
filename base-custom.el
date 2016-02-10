@@ -1,6 +1,14 @@
+;;; base-custom.el --- define generci custom emacs configuration
+
+;;; Commentary:
+;; - General screen configuration
+;; - Add melpa to package-archives
+
+;;; Code:
+
 ;; UTF8 Unix by default where possible.
 (prefer-coding-system 'utf-8-unix)
-(setq default-buffer-file-coding-system 'utf-8-unix)
+(setq buffer-file-coding-system 'utf-8-unix)
 
 ;; disable useless graphical extras
 (tool-bar-mode -1)
@@ -51,3 +59,7 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+(provide 'base-custom)
+
+;;; base-custom.el ends here
