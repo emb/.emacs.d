@@ -34,7 +34,20 @@
 ;; editing adjustments
 (setq-default indent-tabs-mode nil)
 
+;; Prefer newer byte code
+(setq load-prefer-newer t)
+
 ;; Configuration for ido mode.
 (require 'ido)
 (ido-mode t)
 (setq ido-enable-flex-matching t)
+
+;; Configure use-package
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/"))
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))

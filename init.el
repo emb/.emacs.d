@@ -7,10 +7,11 @@
 ;; external packages.
 (load (concat user-emacs-directory "base-custom.el"))
 
-;; Personal script path
-(add-to-list 'load-path (concat user-emacs-directory "extensions"))
+;; Install/Configure magit
+(use-package magit
+  :ensure t
+  :bind ("C-c m s" . magit-status))
 
-;; Install/load required packages.
-(require 'ext-packages)
-(require 'ext-go)
-(require 'ext-json)
+;; Install/Configure markdown mode
+(use-package markdown-mode
+  :mode "\\.md\\'")
