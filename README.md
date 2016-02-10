@@ -2,4 +2,7 @@
 
 To use this repository:
 
-`git clone PATH_TO_REPO ~/emacs.d`
+```
+$ cd ~
+$ git clone PATH_TO_THIS_REPO/.emacs.d.git
+```
