@@ -61,4 +61,13 @@
 (use-package rust-mode
   :mode "\\.rs\\'")
 
+(use-package dockerfile-mode
+  :mode "Dockerfile.\\'")
+
+(use-package yaml-mode
+  :mode "\\.ya?ml\\'")
+
+(use-package terraform-mode
+  :mode "\\.tf\\'")
+
 ;;; init.el ends here
