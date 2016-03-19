@@ -58,4 +58,7 @@
   :init
   (add-hook 'before-save-hook 'gofmt-before-save))
 
+(use-package rust-mode
+  :mode "\\.rs\\'")
+
 ;;; init.el ends here
