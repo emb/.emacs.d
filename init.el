@@ -56,7 +56,9 @@
 (use-package go-mode
   :mode "\\.go\\'"
   :init
-  (add-hook 'before-save-hook 'gofmt-before-save))
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  :bind
+  (("M-." . godef-jump)))
 
 (use-package rust-mode
   :mode "\\.rs\\'")
