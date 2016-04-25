@@ -52,23 +52,51 @@
   (add-to-list 'exec-path-from-shell-variables "GOPATH")
   (exec-path-from-shell-initialize))
 
+;; Install auto-complete-mode
+(use-package auto-complete
+  :ensure t
+  :diminish
+  (auto-complete-mode . " Ⓐ"))
+
 ;; golang can be usefull sometimes.
 (use-package go-mode
+  :ensure t
   :mode "\\.go\\'"
+
   :init
   (add-hook 'before-save-hook 'gofmt-before-save)
-  :bind
-  (("M-." . godef-jump)))
 
+  :bind
+  (("M-." . godef-jump)
+   ("M-," . pop-tag-mark))
+
+  :config
+  (use-package go-autocomplete
+    :ensure t
+    :commands ac-config-default
+    :init
+    (ac-config-default)
+    (add-hook 'go-mode-hook 'auto-complete-mode))
+
+  (use-package go-eldoc
+    :ensure t
+    :init
+    (add-hook 'go-mode-hook 'go-eldoc-setup)
+    :diminish eldoc-mode))
+
+;; Rust
 (use-package rust-mode
   :mode "\\.rs\\'")
 
+;; Docker
 (use-package dockerfile-mode
   :mode "Dockerfile.\\'")
 
+;; YAML Files
 (use-package yaml-mode
   :mode "\\.ya?ml\\'")
 
+;; Terraform
 (use-package terraform-mode
   :mode "\\.tf\\'")
 
