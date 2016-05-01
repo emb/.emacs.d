@@ -69,6 +69,7 @@
 
   :init
   (go-get "golang.org/x/tools/cmd/...") ;; This is slow.. hmm
+  (setq gofmt-command "goimports")      ;; goimports better than gofmt.
   (add-hook 'before-save-hook 'gofmt-before-save)
 
   :bind
