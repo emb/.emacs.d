@@ -59,11 +59,16 @@
   (auto-complete-mode . " Ⓐ"))
 
 ;; golang can be usefull sometimes.
+(defun go-get (package)
+  "Use `go get' to install Go package PACKAGE."
+  (call-process "go" nil nil nil "get" package))
+
 (use-package go-mode
   :ensure t
   :mode "\\.go\\'"
 
   :init
+  (go-get "golang.org/x/tools/cmd/...") ;; This is slow.. hmm
   (add-hook 'before-save-hook 'gofmt-before-save)
 
   :bind
@@ -71,6 +76,10 @@
    ("M-," . pop-tag-mark))
 
   :config
+  ;; Go oracle
+  (load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
+
+  ;; Install autocomplet
   (use-package go-autocomplete
     :ensure t
     :commands ac-config-default
@@ -78,6 +87,7 @@
     (ac-config-default)
     (add-hook 'go-mode-hook 'auto-complete-mode))
 
+  ;; Mini-buffer documentation.
   (use-package go-eldoc
     :ensure t
     :init
