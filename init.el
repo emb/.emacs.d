@@ -68,7 +68,11 @@
   :mode "\\.go\\'"
 
   :init
-  (go-get "golang.org/x/tools/cmd/...") ;; This is slow.. hmm
+  ;; This maybe slow, but whatever
+  (go-get "github.com/rogpeppe/godef")
+  (go-get "golang.org/x/tools/cmd/...")
+  (go-get "github.com/golang/lint/golint")
+
   (setq gofmt-command "goimports")      ;; goimports better than gofmt.
   (add-hook 'before-save-hook 'gofmt-before-save)
 
@@ -77,8 +81,8 @@
    ("M-," . pop-tag-mark))
 
   :config
-  ;; Go oracle
-  (load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
+  ;; Go lint
+  (load-file "$GOPATH/src/github.com/golang/lint/misc/emacs/golint.el")
 
   ;; Install autocomplet
   (use-package go-autocomplete
@@ -93,7 +97,14 @@
     :ensure t
     :init
     (add-hook 'go-mode-hook 'go-eldoc-setup)
-    :diminish eldoc-mode))
+    :diminish eldoc-mode)
+
+  ;; Install go-guru package
+  (use-package go-guru
+    :ensure t
+    :commands go-guru-hl-identifier-mode
+    :init
+    (add-hook 'go-mode-hook #'go-guru-hl-identifier-mode)))
 
 ;; Rust
 (use-package rust-mode
