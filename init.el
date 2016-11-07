@@ -15,6 +15,27 @@
 
 (require 'diminish)
 
+;; I love these Solarized themes
+(use-package solarized-theme
+  :ensure t
+  :config
+  (load-theme 'solarized-light))
+
+
+(use-package color-theme
+  :config
+  ;; Ensure we get the solarized themes here.
+  (use-package color-theme-solarized
+    :ensure t
+    :config
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (let ((mode (if (display-graphic-p frame) 'light 'dark)))
+                  (set-frame-parameter frame 'background-mode mode)
+                  (set-terminal-parameter frame 'background-mode mode))
+                (enable-theme 'solarized)))
+    ))
+
 ;; We  always need magit.
 (use-package magit
   :ensure t

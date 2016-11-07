@@ -36,9 +36,6 @@
 ;; bigger message log than default of 100
 (setq message-log-max 5000)
 
-;; display
-(load-theme 'misterioso)
-
 ;; editing adjustments
 (setq-default indent-tabs-mode nil)
 
