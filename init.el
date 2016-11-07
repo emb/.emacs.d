@@ -39,7 +39,9 @@
 ;; We  always need magit.
 (use-package magit
   :ensure t
-  :bind ("C-c m s" . magit-status))
+  :bind ("C-c m s" . magit-status)
+  :init
+  (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell))
 
 ;; And flycheck
 (use-package flycheck
@@ -48,6 +50,14 @@
   (global-flycheck-mode)
   :diminish
   (flycheck-mode . " Ⓢ"))
+
+;; Ensure I can spell
+(use-package flyspell
+  :ensure t
+  :defer t
+  :init
+  (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+  (add-hook 'text-mode-text 'flyspell-mode))
 
 ;; Markdown is also useful.
 (use-package markdown-mode
