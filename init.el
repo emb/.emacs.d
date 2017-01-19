@@ -68,17 +68,12 @@
   (add-to-list 'exec-path-from-shell-variables "GOPATH")
   (exec-path-from-shell-initialize))
 
-;; Install auto-complete-mode
-(use-package auto-complete
-  :ensure t
-  :diminish
-  (auto-complete-mode . " Ⓐ"))
-
 ;; golang can be usefull sometimes.
 (defun go-get (package)
   "Use `go get' to install Go package PACKAGE."
   (call-process "go" nil nil nil "get" package))
 
+;;(setq font-lock-global-modes (not 'go-mode))
 (use-package go-mode
   :ensure t
   :mode "\\.go\\'"
@@ -100,13 +95,15 @@
   ;; Go lint
   (load-file "$GOPATH/src/github.com/golang/lint/misc/emacs/golint.el")
 
-  ;; Install autocomplet
-  (use-package go-autocomplete
+  ;; Install autocomplete for go
+  (use-package company-go
     :ensure t
-    :commands ac-config-default
+    :diminish
+    (company-mode . " Ⓐ")
     :init
-    (ac-config-default)
-    (add-hook 'go-mode-hook 'auto-complete-mode))
+    (add-hook 'go-mode-hook (lambda ()
+                              (set (make-local-variable 'company-backends) '(company-go))
+                              (company-mode))))
 
   ;; Mini-buffer documentation.
   (use-package go-eldoc
