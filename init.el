@@ -7,6 +7,13 @@
 ;;; Code:
 
 ;; Record customizations from `Customize` at this path instead of init.el.
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file)
 
@@ -86,6 +93,8 @@
 
   (setq gofmt-command "goimports")      ;; goimports better than gofmt.
   (add-hook 'before-save-hook 'gofmt-before-save)
+  ;; Disable syntax highlighting in go buffers
+  (add-hook 'go-mode-hook (lambda () (font-lock-mode nil)))
 
   :bind
   (("M-." . godef-jump)
@@ -134,5 +143,11 @@
 ;; Terraform
 (use-package terraform-mode
   :mode "\\.tf\\'")
+
+;; NodeJS
+(use-package "javascript-mode"
+  :mode "\\.js\\'"
+  :init
+  (setq js-indent-level 2))
 
 ;;; init.el ends here
